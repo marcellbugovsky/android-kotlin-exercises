@@ -1,0 +1,2 @@
+#Guess The Word
+I rewrote the "Guess The Word" Starter App from [Android Kotlin Fundamentals 5.1](https://codelabs.developers.google.com/codelabs/kotlin-android-training-view-model/index.html?index=..%2F..android-kotlin-fundamentals#2)

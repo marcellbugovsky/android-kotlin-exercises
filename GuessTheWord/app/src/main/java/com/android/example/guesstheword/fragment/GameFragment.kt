@@ -1,6 +1,7 @@
 package com.android.example.guesstheword.fragment
 
 
+import android.content.res.Resources
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,6 +18,8 @@ import com.android.example.guesstheword.databinding.GameFragmentBinding
  */
 class GameFragment : Fragment() {
 
+    private lateinit var res: Resources
+
     //Current word and score
     private var word = ""
     private var score = 0
@@ -31,6 +34,7 @@ class GameFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater,
             R.layout.game_fragment, container, false)
+        res = getResources()
 
         //Setting onClickListener
         binding.endGameButton.setOnClickListener{
@@ -48,29 +52,7 @@ class GameFragment : Fragment() {
 
     //Setting the wordList and shuffling
     private fun resetList() {
-        wordList = mutableListOf(
-            "queen",
-            "hospital",
-            "basketball",
-            "cat",
-            "change",
-            "snail",
-            "soup",
-            "calendar",
-            "sad",
-            "desk",
-            "guitar",
-            "home",
-            "railway",
-            "zebra",
-            "jelly",
-            "car",
-            "crow",
-            "trade",
-            "bag",
-            "roll",
-            "bubble"
-        )
+        wordList = res.getStringArray( R.array.wordList ).toMutableList()
         wordList.shuffle()
     }
 

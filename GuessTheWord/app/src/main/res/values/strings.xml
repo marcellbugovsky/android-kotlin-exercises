@@ -10,6 +10,26 @@
     <string name="end_game">End game</string>
     <string name="word_is">The word is…</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="wordList">
+        <item>desk</item>
+        <item>ball</item>
+        <item>kitchen</item>
+        <item>president</item>
+        <item>work</item>
+        <item>country</item>
+        <item>taxes</item>
+        <item>nose</item>
+        <item>spoon</item>
+        <item>water</item>
+        <item>chocolate</item>
+        <item>breathing</item>
+        <item>school</item>
+        <item>spain</item>
+        <item>police</item>
+        <item>train</item>
+        <item>guitar</item>
+        <item>house</item>
+        <item>luggage</item>
+        <item>lock</item>
+    </string-array>
 </resources>
