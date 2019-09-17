@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.android.example.guesstheword.databinding.ActivityMainBinding
+import com.android.example.guesstheword.misc.ResourceProvider
 
 class MainActivity : AppCompatActivity() {
 

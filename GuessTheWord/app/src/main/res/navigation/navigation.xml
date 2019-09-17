@@ -7,7 +7,7 @@
         app:startDestination="@id/titleFragment">
     <fragment
         android:id="@+id/titleFragment"
-        android:name="com.android.example.guesstheword.fragment.TitleFragment"
+        android:name="com.android.example.guesstheword.screens.title.TitleFragment"
         android:label="TitleFragment"
         tools:layout="@layout/title_fragment">
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
-        android:name="com.android.example.guesstheword.fragment.GameFragment"
+        android:name="com.android.example.guesstheword.screens.game.GameFragment"
         android:label="GameFragment"
         tools:layout="@layout/game_fragment">
         <action
@@ -29,7 +29,10 @@
     </fragment>
     <fragment
         android:id="@+id/scoreFragment"
-        android:name="com.android.example.guesstheword.fragment.ScoreFragment"
+        android:name="com.android.example.guesstheword.screens.score.ScoreFragment"
         android:label="ScoreFragment"
-        tools:layout="@layout/score_fragment"/>
+        tools:layout="@layout/score_fragment">
+        <argument android:name="score" app:argType="integer"/>
+        <action android:id="@+id/action_scoreFragment_to_gameFragment" app:destination="@id/gameFragment"/>
+    </fragment>
 </navigation>
