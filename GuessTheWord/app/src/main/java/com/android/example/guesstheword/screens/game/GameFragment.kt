@@ -39,6 +39,7 @@ class GameFragment : Fragment() {
             R.layout.game_fragment, container, false)
         viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
         viewModel.initialize(resourceProvider)
+
         //Setting onClickListener
         binding.endGameButton.setOnClickListener{
             view: View->

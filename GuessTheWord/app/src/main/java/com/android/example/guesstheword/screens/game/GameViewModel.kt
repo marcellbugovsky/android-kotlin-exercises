@@ -7,20 +7,26 @@ import com.android.example.guesstheword.misc.ResourceProvider
 
 class GameViewModel : ViewModel() {
 
+    // Resource Provider for the wordList
+    private lateinit var resourceProvider: ResourceProvider
     // Current word
     var word = ""
     // Current score
     var score = 0
     // List of words
     private lateinit var wordList: MutableList<String>
-    private lateinit var resourceProvider: ResourceProvider
+    // Boolean if initial
+    private var initial = true
 
     init {
     }
 
     fun initialize(resourceProvider: ResourceProvider) {
-        this.resourceProvider = resourceProvider
-        resetList()
+        if(initial) {
+            this.resourceProvider = resourceProvider
+            resetList()
+            initial = false
+        }
     }
 
     private fun resetList() {
