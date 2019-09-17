@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.android.example.guesstheword.R
 import com.android.example.guesstheword.databinding.GameFragmentBinding
 import com.android.example.guesstheword.misc.ResourceProvider
@@ -41,14 +42,7 @@ class GameFragment : Fragment() {
         viewModel.initialize(resourceProvider)
 
         //Setting onClickListener
-        binding.endGameButton.setOnClickListener{
-            view: View->
-            view.findNavController().navigate(
-                GameFragmentDirections.actionGameFragmentToScoreFragment(
-                    viewModel.score
-                )
-            )
-        }
+        binding.endGameButton.setOnClickListener{ onEndgame() }
         binding.correctButton.setOnClickListener{ onCorrect() }
         binding.skipButton.setOnClickListener{ onSkip() }
 
@@ -78,4 +72,13 @@ class GameFragment : Fragment() {
         binding.scoreText.text = viewModel.score.toString()
     }
 
+
+    private fun onEndgame() {
+        gameFinished()
+    }
+
+    private fun gameFinished() {
+        val action = GameFragmentDirections.actionGameFragmentToScoreFragment(viewModel.score)
+        NavHostFragment.findNavController(this).navigate(action)
+    }
 }

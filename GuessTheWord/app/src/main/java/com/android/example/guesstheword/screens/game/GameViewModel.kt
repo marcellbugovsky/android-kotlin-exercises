@@ -25,6 +25,7 @@ class GameViewModel : ViewModel() {
         if(initial) {
             this.resourceProvider = resourceProvider
             resetList()
+            nextWord()
             initial = false
         }
     }
