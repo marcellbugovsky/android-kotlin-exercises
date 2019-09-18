@@ -65,7 +65,7 @@ class GameFragment : Fragment() {
     }
 
     private fun updateWordText() {
-        binding.wordText.text = viewModel.word
+        binding.wordText.text = viewModel.word.value
     }
 
     private fun updateScoreText() {
@@ -78,8 +78,7 @@ class GameFragment : Fragment() {
     }
 
     private fun gameFinished() {
-        val action = GameFragmentDirections.actionGameFragmentToScoreFragment(viewModel.score)
-        action.score = viewModel.score
+        val action = GameFragmentDirections.actionGameFragmentToScoreFragment(viewModel.score.value?:0)
         NavHostFragment.findNavController(this).navigate(action)
     }
 }
