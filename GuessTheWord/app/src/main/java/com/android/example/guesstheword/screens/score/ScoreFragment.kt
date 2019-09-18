@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.android.example.guesstheword.R
 import com.android.example.guesstheword.databinding.ScoreFragmentBinding
@@ -17,8 +18,9 @@ import com.android.example.guesstheword.databinding.ScoreFragmentBinding
  */
 class ScoreFragment : Fragment() {
 
-    private lateinit var args: ScoreFragmentArgs
     private lateinit var binding: ScoreFragmentBinding
+    private lateinit var viewModel: ScoreViewModel
+    private lateinit var viewModelFactory: ScoreViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,13 +28,14 @@ class ScoreFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater,
             R.layout.score_fragment, container, false)
-        args = ScoreFragmentArgs.fromBundle(arguments!!)
+        viewModelFactory = ScoreViewModelFactory(ScoreFragmentArgs.fromBundle(arguments!!).score)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(ScoreViewModel::class.java)
         binding.playAgainButton.setOnClickListener{
             view: View->
             view.findNavController().navigate(ScoreFragmentDirections.actionScoreFragmentToGameFragment())
         }
 
-        binding.scoreText.text = args.score.toString()
+        binding.scoreText.text = viewModel.score.toString()
         return binding.root
     }
 
