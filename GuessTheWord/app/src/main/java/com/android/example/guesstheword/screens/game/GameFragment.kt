@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -41,35 +42,28 @@ class GameFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
         viewModel.initialize(resourceProvider)
 
+        // LiveData Observation for score and word
+        viewModel.score.observe(this, Observer { newScore ->
+            binding.scoreText.text = newScore.toString()
+        })
+        viewModel.word.observe(this, Observer { newWord ->
+            binding.wordText.text = newWord
+        })
+
         //Setting onClickListener
         binding.endGameButton.setOnClickListener{ onEndgame() }
         binding.correctButton.setOnClickListener{ onCorrect() }
         binding.skipButton.setOnClickListener{ onSkip() }
-
-        updateScoreText()
-        updateWordText()
 
         return binding.root
     }
 
     private fun onSkip() {
         viewModel.onSkip()
-        updateScoreText()
-        updateWordText()
     }
 
     private fun onCorrect() {
         viewModel.onCorrect()
-        updateScoreText()
-        updateWordText()
-    }
-
-    private fun updateWordText() {
-        binding.wordText.text = viewModel.word.value
-    }
-
-    private fun updateScoreText() {
-        binding.scoreText.text = viewModel.score.toString()
     }
 
 
@@ -78,7 +72,8 @@ class GameFragment : Fragment() {
     }
 
     private fun gameFinished() {
-        val action = GameFragmentDirections.actionGameFragmentToScoreFragment(viewModel.score.value?:0)
+        val action = GameFragmentDirections.actionGameFragmentToScoreFragment()
+        action.score = viewModel.score.value?:0
         NavHostFragment.findNavController(this).navigate(action)
     }
 }
