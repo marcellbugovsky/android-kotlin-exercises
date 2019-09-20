@@ -42,7 +42,10 @@ class GameFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
         viewModel.initialize(resourceProvider)
 
-        // LiveData Observation for score and word
+        // LiveData Observation for gameFinished, score and word
+        viewModel.eventGameFinish.observe(this, Observer {hasFinished ->
+            if (hasFinished) gameFinished()
+        })
         viewModel.score.observe(this, Observer { newScore ->
             binding.scoreText.text = newScore.toString()
         })

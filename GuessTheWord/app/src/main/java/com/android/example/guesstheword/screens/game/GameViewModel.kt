@@ -1,6 +1,7 @@
 package com.android.example.guesstheword.screens.game
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.example.guesstheword.R
@@ -11,17 +12,25 @@ class GameViewModel : ViewModel() {
     // Resource Provider for the wordList
     private lateinit var resourceProvider: ResourceProvider
     // Current word
-    var word = MutableLiveData<String>()
+    private val _word = MutableLiveData<String>()
+    val word: LiveData<String>
+        get() = _word
     // Current score
-    var score = MutableLiveData<Int>()
+    private val _score = MutableLiveData<Int>()
+    val score: LiveData<Int>
+        get() = _score
     // List of words
     private lateinit var wordList: MutableList<String>
     // Boolean if initial
     private var initial = true
+    // Event which triggers the end of the game
+    private val _eventGameFinish = MutableLiveData<Boolean>()
+    val eventGameFinish: LiveData<Boolean>
+        get() = _eventGameFinish
 
     init {
-        word.value = ""
-        score.value = 0
+        _word.value = ""
+        _score.value = 0
     }
 
     fun initialize(resourceProvider: ResourceProvider) {
@@ -40,22 +49,28 @@ class GameViewModel : ViewModel() {
 
     private fun nextWord() {
         if (!wordList.isEmpty()) {
-            word.value = wordList.removeAt(0)
+            _word.value = wordList.removeAt(0)
+        } else {
+            onGameFinish()
         }
     }
 
     fun onSkip() {
         if (!wordList.isEmpty()) {
-            score.value = (score.value)?.minus(1)
+            _score.value = (score.value)?.minus(1)
         }
         nextWord()
     }
 
     fun onCorrect() {
         if (!wordList.isEmpty()) {
-            score.value = (score.value)?.plus(1)
+            _score.value = (score.value)?.plus(1)
         }
         nextWord()
+    }
+
+    fun onGameFinish() {
+        _eventGameFinish.value = true
     }
 
     override fun onCleared() {
