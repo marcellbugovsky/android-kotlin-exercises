@@ -8,4 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Basic styling for the buttons. -->
+    <style name="TrackButtons" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:textColor">@color/colorBrightGray</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/colorAccent</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>
