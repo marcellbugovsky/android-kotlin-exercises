@@ -2,5 +2,7 @@
     <string name="app_name">Sleep Tracker</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
+    <string name="clear">Clear</string>
+    <string name="how_was_your_sleep">How was your sleep?</string>
 
 </resources>

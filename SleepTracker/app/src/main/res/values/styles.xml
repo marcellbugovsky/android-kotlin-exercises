@@ -10,7 +10,7 @@
 
     <!-- Basic styling for the buttons. -->
     <style name="TrackButtons" parent="Widget.AppCompat.Button.Colored">
-        <item name="android:textColor">@color/colorBrightGray</item>
+        <item name="android:textColor">@color/colorText</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorControlHighlight">@color/colorAccent</item>
         <item name="android:textStyle">bold</item>
