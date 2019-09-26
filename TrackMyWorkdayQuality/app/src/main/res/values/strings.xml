@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Track my workday quality</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="clear">Clear</string>
+    <string name="how_was_your_workday">How was your workday?</string>
+
+</resources>
