@@ -4,5 +4,10 @@
     <string name="stop">Stop</string>
     <string name="clear">Clear</string>
     <string name="how_was_your_workday">How was your workday?</string>
+    <string name="quality_0">Very Bad</string>
+    <string name="quality_1">Poor</string>
+    <string name="quality_2">Mediocre</string>
+    <string name="quality_3">Good</string>
+    <string name="quality_4">Awesome</string>
 
 </resources>

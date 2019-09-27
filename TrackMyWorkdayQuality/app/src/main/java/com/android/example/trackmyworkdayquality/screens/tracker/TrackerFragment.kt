@@ -17,9 +17,9 @@ import com.android.example.trackmyworkdayquality.databinding.TrackerFragmentBind
 class TrackerFragment : Fragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?): View? {
         val binding: TrackerFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.tracker_fragment, container, false)
 
         return binding.root
