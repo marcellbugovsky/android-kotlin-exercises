@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="trackerViewModel"
+            type="com.android.example.trackmyworkdayquality.screens.tracker.TrackerViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
