@@ -19,6 +19,9 @@
         android:name="com.android.example.trackmyworkdayquality.screens.quality.QualityFragment"
         android:label="quality_fragment"
         tools:layout="@layout/quality_fragment" >
+        <argument
+            android:name="workdayKey"
+            app:argType="long" />
         <action
             android:id="@+id/action_qualityFragment_to_trackerFragment"
             app:destination="@id/trackerFragment" />

@@ -2,6 +2,7 @@ package com.android.example.trackmyworkdayquality.screens.tracker
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.android.example.trackmyworkdayquality.database.DatabaseDao
@@ -21,6 +22,10 @@ class TrackerViewModel(
         formatDays(days, application.resources)
     }
     private var today = MutableLiveData<Workday?>()
+
+    private val _navigateToSleepQuality = MutableLiveData<Workday>()
+    val navigateToSleepQuality: LiveData<Workday>
+        get() = _navigateToSleepQuality
 
     init {
         initializeToday()
@@ -55,6 +60,7 @@ class TrackerViewModel(
         uiScope.launch {
             val oldDay = today.value ?: return@launch
             oldDay.endTimeMilli = System.currentTimeMillis()
+            _navigateToSleepQuality.value = oldDay
             update(oldDay)
         }
     }
@@ -64,6 +70,10 @@ class TrackerViewModel(
             clear()
             today.value = null
         }
+    }
+
+    fun doneNavigating() {
+        _navigateToSleepQuality.value = null
     }
 
     private suspend fun insert(day: Workday) {

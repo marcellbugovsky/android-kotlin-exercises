@@ -7,7 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.android.example.trackmyworkdayquality.R
 import com.android.example.trackmyworkdayquality.database.WorkDatabase
 import com.android.example.trackmyworkdayquality.databinding.TrackerFragmentBinding
@@ -30,6 +33,14 @@ class TrackerFragment : Fragment() {
         val trackerViewModel = ViewModelProviders.of(this, viewModelFactory).get(TrackerViewModel::class.java)
         binding.trackerViewModel = trackerViewModel
 
+        trackerViewModel.navigateToSleepQuality.observe(this, Observer {
+            day ->
+            day?.let {
+                  findNavController(this).navigate(
+                      TrackerFragmentDirections.actionTrackerFragmentToQualityFragment(day.dayId))
+                        trackerViewModel.doneNavigating()
+            }
+        })
         binding.setLifecycleOwner(this)
 
         return binding.root
