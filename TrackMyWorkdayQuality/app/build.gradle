@@ -38,11 +38,15 @@ dependencies {
     // Android KTX
     implementation 'androidx.core:core-ktx:1.0.2'
 
-    //Room and Lifecycle
+    // Room and Lifecycle
     implementation "androidx.room:room-runtime:$room_version"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
 
     // Navigation
     implementation "androidx.navigation:navigation-fragment:$nav_version"
