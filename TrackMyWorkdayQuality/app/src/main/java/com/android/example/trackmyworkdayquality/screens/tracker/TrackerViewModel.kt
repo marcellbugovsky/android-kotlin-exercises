@@ -27,6 +27,16 @@ class TrackerViewModel(
     val navigateToSleepQuality: LiveData<Workday>
         get() = _navigateToSleepQuality
 
+    val startButtonVisible = Transformations.map(today) {
+        it == null
+    }
+    val stopButtonVisible = Transformations.map(today) {
+        it != null
+    }
+    val clearButtonVisible = Transformations.map(days) {
+        it?.isNotEmpty()
+    }
+
     init {
         initializeToday()
     }

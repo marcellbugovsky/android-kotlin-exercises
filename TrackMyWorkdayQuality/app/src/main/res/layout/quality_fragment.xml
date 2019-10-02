@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="qualityViewModel"
+            type="com.android.example.trackmyworkdayquality.screens.quality.QualityViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,6 +37,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_quality_0"
             android:layout_margin="@dimen/margin"
+            android:onClick="@{() -> qualityViewModel.onSetWorkdayQuality(0)}"
             app:layout_constraintTop_toBottomOf="@id/title_text"
             app:layout_constraintEnd_toStartOf="@+id/quality_1_image"
             app:layout_constraintHorizontal_bias="0.5"
@@ -46,6 +49,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_quality_1"
             android:layout_margin="@dimen/margin"
+            android:onClick="@{() -> qualityViewModel.onSetWorkdayQuality(1)}"
             app:layout_constraintTop_toBottomOf="@id/title_text"
             app:layout_constraintEnd_toStartOf="@+id/quality_2_image"
             app:layout_constraintHorizontal_bias="0.5"
@@ -57,6 +61,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_quality_2"
             android:layout_margin="@dimen/margin"
+            android:onClick="@{() -> qualityViewModel.onSetWorkdayQuality(2)}"
             app:layout_constraintTop_toBottomOf="@id/title_text"
             app:layout_constraintEnd_toStartOf="@+id/quality_3_image"
             app:layout_constraintHorizontal_bias="0.5"
@@ -68,6 +73,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_quality_3"
             android:layout_margin="@dimen/margin"
+            android:onClick="@{() -> qualityViewModel.onSetWorkdayQuality(3)}"
             app:layout_constraintTop_toBottomOf="@id/title_text"
             app:layout_constraintEnd_toStartOf="@+id/quality_4_image"
             app:layout_constraintHorizontal_bias="0.5"
@@ -79,6 +85,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_quality_4"
             android:layout_margin="@dimen/margin"
+            android:onClick="@{() -> qualityViewModel.onSetWorkdayQuality(4)}"
             app:layout_constraintTop_toBottomOf="@id/title_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
