@@ -27,6 +27,10 @@ class TrackerViewModel(
     val navigateToSleepQuality: LiveData<Workday>
         get() = _navigateToSleepQuality
 
+    private var _showSnackbarEvent = MutableLiveData<Boolean>()
+    val showSnackbarEvent: LiveData<Boolean>
+        get() = _showSnackbarEvent
+
     val startButtonVisible = Transformations.map(today) {
         it == null
     }
@@ -79,11 +83,16 @@ class TrackerViewModel(
         uiScope.launch {
             clear()
             today.value = null
+            _showSnackbarEvent.value = true
         }
     }
 
     fun doneNavigating() {
         _navigateToSleepQuality.value = null
+    }
+
+    fun doneShowSnackbarEvent() {
+        _showSnackbarEvent.value = null
     }
 
     private suspend fun insert(day: Workday) {

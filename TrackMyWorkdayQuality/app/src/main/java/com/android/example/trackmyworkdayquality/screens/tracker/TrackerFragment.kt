@@ -14,6 +14,7 @@ import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.android.example.trackmyworkdayquality.R
 import com.android.example.trackmyworkdayquality.database.WorkDatabase
 import com.android.example.trackmyworkdayquality.databinding.TrackerFragmentBinding
+import com.google.android.material.snackbar.Snackbar
 
 
 /**
@@ -42,6 +43,17 @@ class TrackerFragment : Fragment() {
             }
         })
         binding.setLifecycleOwner(this)
+
+        trackerViewModel.showSnackbarEvent.observe(this, Observer {
+            if (it == true) {
+                Snackbar.make(
+                    activity!!.findViewById(android.R.id.content),
+                    getString(R.string.cleared_message),
+                    Snackbar.LENGTH_SHORT
+                ).show()
+                trackerViewModel.doneShowSnackbarEvent()
+            }
+        })
 
         return binding.root
     }
