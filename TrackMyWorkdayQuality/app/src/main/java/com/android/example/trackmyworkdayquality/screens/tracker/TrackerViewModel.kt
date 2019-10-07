@@ -17,7 +17,7 @@ class TrackerViewModel(
 
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
-    private val days = database.getAllDays()
+    val days = database.getAllDays()
     val daysString = Transformations.map(days) { days ->
         formatDays(days, application.resources)
     }
