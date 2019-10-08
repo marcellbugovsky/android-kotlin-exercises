@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.android.example.trackmyworkdayquality.R
 import com.android.example.trackmyworkdayquality.convertDurationToFormatted
@@ -12,6 +13,17 @@ import com.android.example.trackmyworkdayquality.convertNumericQualityToString
 import com.android.example.trackmyworkdayquality.database.Workday
 
 class WorkdayAdapter: RecyclerView.Adapter<WorkdayAdapter.ViewHolder>() {
+
+    class WorkdayDiffCallback : DiffUtil.ItemCallback<Workday>() {
+        override fun areItemsTheSame(oldItem: Workday, newItem: Workday): Boolean {
+            return oldItem.dayId == newItem.dayId
+        }
+
+        override fun areContentsTheSame(oldItem: Workday, newItem: Workday): Boolean {
+            return oldItem == newItem
+        }
+
+    }
 
     var data = listOf<Workday>()
         set(value) {
@@ -35,6 +47,7 @@ class WorkdayAdapter: RecyclerView.Adapter<WorkdayAdapter.ViewHolder>() {
     ): ViewHolder {
         return ViewHolder.from(parent)
     }
+
 
     class ViewHolder private constructor(
         itemView: View
