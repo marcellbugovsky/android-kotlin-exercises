@@ -6,13 +6,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.android.example.trackmyworkdayquality.R
 import com.android.example.trackmyworkdayquality.convertDurationToFormatted
 import com.android.example.trackmyworkdayquality.convertNumericQualityToString
 import com.android.example.trackmyworkdayquality.database.Workday
 
-class WorkdayAdapter: RecyclerView.Adapter<WorkdayAdapter.ViewHolder>() {
+class WorkdayAdapter : ListAdapter<Workday, WorkdayAdapter.ViewHolder>(WorkdayDiffCallback()) {
 
     class WorkdayDiffCallback : DiffUtil.ItemCallback<Workday>() {
         override fun areItemsTheSame(oldItem: Workday, newItem: Workday): Boolean {
@@ -25,19 +26,11 @@ class WorkdayAdapter: RecyclerView.Adapter<WorkdayAdapter.ViewHolder>() {
 
     }
 
-    var data = listOf<Workday>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
-
-    override fun getItemCount() = data.size
-
     override fun onBindViewHolder(
         holder: ViewHolder,
         position: Int
     ) {
-        val item = data[position]
+        val item = getItem(position)
         holder.bind(item)
     }
 

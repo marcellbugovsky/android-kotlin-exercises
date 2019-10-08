@@ -60,7 +60,7 @@ class TrackerFragment : Fragment() {
 
         trackerViewModel.days.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.data = it
+                adapter.submitList(it)
             }
         })
 
