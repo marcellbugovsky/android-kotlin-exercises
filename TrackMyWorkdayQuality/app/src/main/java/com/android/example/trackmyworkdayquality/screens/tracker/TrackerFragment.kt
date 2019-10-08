@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.android.example.trackmyworkdayquality.R
 import com.android.example.trackmyworkdayquality.database.WorkDatabase
 import com.android.example.trackmyworkdayquality.databinding.TrackerFragmentBinding
@@ -63,6 +64,9 @@ class TrackerFragment : Fragment() {
                 adapter.submitList(it)
             }
         })
+
+        val manager = GridLayoutManager(activity, 3)
+        binding.workdayList.layoutManager = manager
 
         return binding.root
     }

@@ -27,30 +27,18 @@
             tools:srcCompat="@drawable/ic_quality_2" />
 
         <TextView
-            android:id="@+id/workday_length"
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:textColor="@color/onSurface"
-            app:workDurationFormatted="@{work}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/quality_image"
-            app:layout_constraintTop_toTopOf="@+id/quality_image"
-            tools:text="Wednesday" />
-
-        <TextView
             android:id="@+id/quality_string"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_marginTop="8dp"
             android:textColor="@color/onSurface"
+            android:textAlignment="center"
             app:workQualityString="@{work}"
-            app:layout_constraintEnd_toEndOf="@+id/workday_length"
+            app:layout_constraintEnd_toEndOf="@+id/quality_image"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/workday_length"
-            app:layout_constraintTop_toBottomOf="@+id/workday_length"
+            app:layout_constraintStart_toStartOf="@+id/quality_image"
+            app:layout_constraintTop_toBottomOf="@+id/quality_image"
+            app:layout_constraintBottom_toBottomOf="parent"
             tools:text="Excellent!!!" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
