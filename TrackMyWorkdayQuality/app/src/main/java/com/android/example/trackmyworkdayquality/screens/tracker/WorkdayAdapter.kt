@@ -47,19 +47,8 @@ class WorkdayAdapter : ListAdapter<Workday, WorkdayAdapter.ViewHolder>(WorkdayDi
         fun bind(
             item: Workday
         ) {
-            val res = itemView.context.resources
-            binding.workdayLength.text = convertDurationToFormatted(item.startTimeMilli, item.endTimeMilli, res)
-            binding.qualityString.text = convertNumericQualityToString(item.workdayQuality, res)
-            binding.qualityImage.setImageResource(
-                when (item.workdayQuality) {
-                    0 -> R.drawable.ic_quality_0
-                    1 -> R.drawable.ic_quality_1
-                    2 -> R.drawable.ic_quality_2
-                    3 -> R.drawable.ic_quality_3
-                    4 -> R.drawable.ic_quality_4
-                    else -> R.drawable.ic_workday_active
-                }
-            )
+            binding.work = item
+            binding.executePendingBindings()
         }
 
         companion object {
