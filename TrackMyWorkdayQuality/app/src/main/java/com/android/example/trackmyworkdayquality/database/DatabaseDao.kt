@@ -26,4 +26,7 @@ interface DatabaseDao {
 
     @Query("SELECT * FROM daily_workday_quality_table ORDER BY dayId DESC")
     fun getAllDays(): LiveData<List<Workday>>
+
+    @Query("SELECT * from daily_workday_quality_table WHERE dayId = :key")
+    fun getWorkdayWithId(key: Long): LiveData<Workday>
 }
