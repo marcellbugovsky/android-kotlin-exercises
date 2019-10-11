@@ -21,7 +21,7 @@ class DetailViewModel(
 
     // Variable to navigate to TrackerFragment
     private val _navigateToTracker = MutableLiveData<Boolean?>()
-    val navigateToTracke: LiveData<Boolean?>
+    val navigateToTracker: LiveData<Boolean?>
         get() =_navigateToTracker
 
     init {

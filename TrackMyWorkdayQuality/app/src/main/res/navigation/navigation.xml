@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_trackerFragment_to_qualityFragment"
             app:destination="@id/qualityFragment" />
+        <action
+            android:id="@+id/action_trackerFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/qualityFragment"
@@ -24,6 +27,23 @@
             app:argType="long" />
         <action
             android:id="@+id/action_qualityFragment_to_trackerFragment"
-            app:destination="@id/trackerFragment" />
+            app:destination="@id/trackerFragment"
+            app:popUpTo="@+id/trackerFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.android.example.trackmyworkdayquality.screens.detail.DetailFragment"
+        android:label="DetailFragment"
+        tools:layout="@layout/detail_fragment">
+        <argument
+            android:name="workdayKey"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_detailFragment_to_trackerFragment"
+            app:destination="@id/trackerFragment"
+            app:launchSingleTop="false"
+            app:popUpTo="@+id/trackerFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.android.example.trackmyworkdayquality.R
+import com.android.example.trackmyworkdayquality.database.WorkDatabase
 import com.android.example.trackmyworkdayquality.databinding.DetailFragmentBinding
 
 /**
@@ -24,11 +26,24 @@ class DetailFragment : Fragment() {
     ): View? {
         val binding: DetailFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.detail_fragment, container, false)
         val application = requireNotNull(this.activity).application
-        val arguments = DetailFragmentArgs.fromBundle(arguments)
-        // TODO correct this bullshit
+        val arguments = DetailFragmentArgs.fromBundle(arguments!!)
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.detail_fragment, container, false)
+        // ViewModel
+        val dataSource = WorkDatabase.getInstance(application).databaseDao
+        val viewModelFactory = DetailViewModelFactory(arguments.workdayKey, dataSource)
+        val detailViewModel = ViewModelProviders.of(this, viewModelFactory).get(DetailViewModel::class.java)
+
+        binding.detailViewModel = detailViewModel
+        binding.setLifecycleOwner(this)
+
+        detailViewModel.navigateToTracker.observe(this, Observer {
+            if (it == true) {
+                findNavController(this).navigate(DetailFragmentDirections.actionDetailFragmentToTrackerFragment())
+                detailViewModel.doneNavigating()
+            }
+        })
+
+        return binding.root
     }
 
 }
