@@ -7,11 +7,15 @@
         <variable
             name="work"
             type="com.android.example.trackmyworkdayquality.database.Workday" />
+        <variable
+            name="clickListener"
+            type="com.android.example.trackmyworkdayquality.screens.tracker.WorkdayListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onClick(day)}">
 
         <ImageView
             android:id="@+id/quality_image"

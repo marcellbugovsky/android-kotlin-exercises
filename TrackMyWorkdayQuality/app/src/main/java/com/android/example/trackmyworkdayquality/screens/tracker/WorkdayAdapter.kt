@@ -5,13 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.android.example.trackmyworkdayquality.R
-import com.android.example.trackmyworkdayquality.convertDurationToFormatted
-import com.android.example.trackmyworkdayquality.convertNumericQualityToString
 import com.android.example.trackmyworkdayquality.database.Workday
 import com.android.example.trackmyworkdayquality.databinding.ListItemWorkdayBinding
 
-class WorkdayAdapter : ListAdapter<Workday, WorkdayAdapter.ViewHolder>(WorkdayDiffCallback()) {
+class WorkdayAdapter(val clickListener: WorkdayListener) : ListAdapter<Workday, WorkdayAdapter.ViewHolder>(WorkdayDiffCallback()) {
 
     class WorkdayDiffCallback : DiffUtil.ItemCallback<Workday>() {
         override fun areItemsTheSame(oldItem: Workday, newItem: Workday): Boolean {
@@ -29,7 +26,7 @@ class WorkdayAdapter : ListAdapter<Workday, WorkdayAdapter.ViewHolder>(WorkdayDi
         position: Int
     ) {
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(getItem(position)!!, clickListener)
     }
 
     override fun onCreateViewHolder(
@@ -45,10 +42,12 @@ class WorkdayAdapter : ListAdapter<Workday, WorkdayAdapter.ViewHolder>(WorkdayDi
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(
-            item: Workday
+            item: Workday,
+            clickListener: WorkdayListener
         ) {
             binding.work = item
             binding.executePendingBindings()
+            binding.clickListener = clickListener
         }
 
         companion object {
@@ -61,4 +60,8 @@ class WorkdayAdapter : ListAdapter<Workday, WorkdayAdapter.ViewHolder>(WorkdayDi
 
     }
 
+}
+
+class WorkdayListener(val clickListener: (dayId: Long) -> Unit) {
+    fun onClick(day: Workday) = clickListener(day.dayId)
 }

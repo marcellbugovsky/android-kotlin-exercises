@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -14,6 +15,7 @@ import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.example.trackmyworkdayquality.R
 import com.android.example.trackmyworkdayquality.database.WorkDatabase
+import com.android.example.trackmyworkdayquality.database.Workday
 import com.android.example.trackmyworkdayquality.databinding.TrackerFragmentBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -57,7 +59,9 @@ class TrackerFragment : Fragment() {
             }
         })
 
-        val adapter = WorkdayAdapter()
+        val adapter = WorkdayAdapter(WorkdayListener { dayId ->
+            Toast.makeText(context, "@{dayId}", Toast.LENGTH_LONG).show()
+        })
         binding.workdayList.adapter = adapter
 
         trackerViewModel.days.observe(viewLifecycleOwner, Observer {
