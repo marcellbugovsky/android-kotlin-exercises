@@ -60,7 +60,7 @@ class TrackerFragment : Fragment() {
         })
 
         val adapter = WorkdayAdapter(WorkdayListener { dayId ->
-            Toast.makeText(context, "@{dayId}", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, dayId.toString(), Toast.LENGTH_LONG).show()
         })
         binding.workdayList.adapter = adapter
 
