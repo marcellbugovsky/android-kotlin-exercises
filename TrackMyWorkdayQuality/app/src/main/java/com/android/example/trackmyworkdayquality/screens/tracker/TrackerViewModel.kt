@@ -27,6 +27,10 @@ class TrackerViewModel(
     val navigateToSleepQuality: LiveData<Workday>
         get() = _navigateToSleepQuality
 
+    private val _navigateToWorkdayDetail = MutableLiveData<Long>()
+    val navigateToWorkdayDetail: LiveData<Long>
+        get() = _navigateToWorkdayDetail
+
     private var _showSnackbarEvent = MutableLiveData<Boolean>()
     val showSnackbarEvent: LiveData<Boolean>
         get() = _showSnackbarEvent
@@ -116,6 +120,14 @@ class TrackerViewModel(
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
+    }
+
+    fun onWorkdayClicked(id: Long) {
+        _navigateToWorkdayDetail.value = id
+    }
+
+    fun onWorkdayDetailNavigated() {
+        _navigateToWorkdayDetail.value = null
     }
 
 }
