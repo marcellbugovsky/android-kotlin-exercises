@@ -60,15 +60,12 @@ class TrackerFragment : Fragment() {
         })
 
         val adapter = WorkdayAdapter(WorkdayListener { dayId ->
-            Toast.makeText(context, dayId.toString(), Toast.LENGTH_LONG).show()
             trackerViewModel.onWorkdayClicked(dayId)
         })
-
         binding.workdayList.adapter = adapter
-
         trackerViewModel.days.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.submitList(it)
+                adapter.addHeaderAndSubmitList(it)
             }
         })
 

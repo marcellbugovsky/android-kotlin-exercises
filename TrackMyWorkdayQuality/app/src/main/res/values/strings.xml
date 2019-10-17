@@ -25,5 +25,6 @@
     <string name="seconds_length">%d seconds on %s</string>
 
     <string name="close">CLOSE</string>
+    <string name="header_text">Work Results</string>
 
 </resources>
