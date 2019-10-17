@@ -10,11 +10,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.example.trackmyworkdayquality.R
 import com.android.example.trackmyworkdayquality.database.Workday
 import com.android.example.trackmyworkdayquality.databinding.ListItemWorkdayBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 private val ITEM_VIEW_TYPE_HEADER = 0
 private val ITEM_VIEW_TYPE_ITEM = 1
 
 class WorkdayAdapter(val clickListener: WorkdayListener) : ListAdapter<DataItem, RecyclerView.ViewHolder>(WorkdayDiffCallback()) {
+
+    private val adapterScope = CoroutineScope(Dispatchers.Default)
 
     class WorkdayDiffCallback : DiffUtil.ItemCallback<DataItem>() {
         override fun areItemsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
@@ -52,11 +58,15 @@ class WorkdayAdapter(val clickListener: WorkdayListener) : ListAdapter<DataItem,
     }
 
     fun addHeaderAndSubmitList(list: List<Workday>?) {
-        val items = when (list) {
-            null -> listOf(DataItem.Header)
-            else -> listOf(DataItem.Header) + list.map { DataItem.WorkdayItem(it) }
+        adapterScope.launch {
+            val items = when (list) {
+                null -> listOf(DataItem.Header)
+                else -> listOf(DataItem.Header) + list.map { DataItem.WorkdayItem(it) }
+            }
+            withContext(Dispatchers.Main) {
+                submitList(items)
+            }
         }
-        submitList(items)
     }
 
     override fun getItemViewType(position: Int): Int {
