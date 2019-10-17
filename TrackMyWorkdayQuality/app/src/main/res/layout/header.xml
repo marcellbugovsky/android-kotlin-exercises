@@ -5,5 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:textAppearance="?android:attr/textAppearanceLarge"
+    android:background="@drawable/background_primary"
+    android:textColor="@color/onPrimary"
     android:text="@string/header_text"
+    android:layout_marginTop="@dimen/margin"
+    android:layout_marginStart="@dimen/margin"
+    android:layout_marginEnd="@dimen/margin"
     android:padding="8dp" />
